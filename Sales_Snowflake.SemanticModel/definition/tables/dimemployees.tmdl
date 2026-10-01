@@ -1,0 +1,213 @@
+/// Sales employees data
+table dimemployees
+	lineageTag: e430f36f-4606-4f0b-9a96-c29ccb2cd931
+	sourceLineageTag: [Semantic].[dimemployees]
+
+	column Address
+		dataType: string
+		lineageTag: 2e0d2a02-6b79-4670-8543-48cc05c6c528
+		sourceLineageTag: Address
+		summarizeBy: none
+		sourceColumn: Address
+
+		annotation SummarizationSetBy = Automatic
+
+	column BirthDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 5cdd6ec9-faef-4d7b-94c0-b5e76973d3b4
+		sourceLineageTag: BirthDate
+		summarizeBy: none
+		sourceColumn: BirthDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		lineageTag: b69190dd-9956-49b5-b1aa-e0e1c98e9c4c
+		sourceLineageTag: City
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: 2e357591-35cb-4903-b52b-f9578e305204
+		sourceLineageTag: Country
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column EmployeeID
+		dataType: int64
+		formatString: 0
+		lineageTag: beda19ed-9ac3-4dc9-86f2-4865bb2c461a
+		sourceLineageTag: EmployeeID
+		summarizeBy: none
+		sourceColumn: EmployeeID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Extension
+		dataType: string
+		lineageTag: 802ec977-4df3-4875-844f-f800d7d7c9a9
+		sourceLineageTag: Extension
+		summarizeBy: none
+		sourceColumn: Extension
+
+		annotation SummarizationSetBy = Automatic
+
+	column FirstName
+		dataType: string
+		lineageTag: e8be40a8-e137-4815-a32d-7ec2c526a8ea
+		sourceLineageTag: FirstName
+		summarizeBy: none
+		sourceColumn: FirstName
+
+		annotation SummarizationSetBy = Automatic
+
+	column HireDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: e189f7ca-9d22-4302-8b34-bac922ac5861
+		sourceLineageTag: HireDate
+		summarizeBy: none
+		sourceColumn: HireDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column HomePhone
+		dataType: string
+		lineageTag: 94fe1de5-26b7-46aa-a923-0fa66fd5a866
+		sourceLineageTag: HomePhone
+		summarizeBy: none
+		sourceColumn: HomePhone
+
+		annotation SummarizationSetBy = Automatic
+
+	column LastName
+		dataType: string
+		lineageTag: 24dfb250-7891-468d-9d0d-b318e4de483f
+		sourceLineageTag: LastName
+		summarizeBy: none
+		sourceColumn: LastName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Notes
+		dataType: string
+		lineageTag: c367e066-2e73-47d6-9bee-56a9441d01c8
+		sourceLineageTag: Notes
+		summarizeBy: none
+		sourceColumn: Notes
+
+		annotation SummarizationSetBy = Automatic
+
+	column PostalCode
+		dataType: string
+		lineageTag: fe50e9bd-33b0-4549-b5bf-42c0b0457228
+		sourceLineageTag: PostalCode
+		summarizeBy: none
+		sourceColumn: PostalCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column Region
+		dataType: string
+		lineageTag: 12d30b0f-8af5-4224-9880-b7c3d3d4e4a3
+		sourceLineageTag: Region
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column ReportsTo
+		dataType: int64
+		formatString: 0
+		lineageTag: 029f185c-df0f-4bdf-b5f9-7776162a1613
+		sourceLineageTag: ReportsTo
+		summarizeBy: none
+		sourceColumn: ReportsTo
+
+		annotation SummarizationSetBy = Automatic
+
+	column Title
+		dataType: string
+		lineageTag: 4a1d08f2-4781-4109-8082-bf0008fe39ec
+		sourceLineageTag: Title
+		summarizeBy: none
+		sourceColumn: Title
+
+		annotation SummarizationSetBy = Automatic
+
+	column TitleOfCourtesy
+		dataType: string
+		lineageTag: e9595265-e92d-4557-8b9b-56e5934060ae
+		sourceLineageTag: TitleOfCourtesy
+		summarizeBy: none
+		sourceColumn: TitleOfCourtesy
+
+		annotation SummarizationSetBy = Automatic
+
+	column IngestedAt
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 4fbcecc8-f450-49e6-a741-49f1cc80b0a8
+		sourceLineageTag: IngestedAt
+		summarizeBy: none
+		sourceColumn: IngestedAt
+
+		annotation SummarizationSetBy = Automatic
+
+	column EndedAt
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 4d43a767-289b-45bf-8d10-f1fffac97c37
+		sourceLineageTag: EndedAt
+		summarizeBy: none
+		sourceColumn: EndedAt
+
+		annotation SummarizationSetBy = Automatic
+
+	column EmployeesSK
+		dataType: int64
+		formatString: 0
+		lineageTag: aa6c8137-25e4-4e04-82cd-1a736e471b67
+		sourceLineageTag: EmployeesSK
+		summarizeBy: none
+		sourceColumn: EmployeesSK
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsCurrent
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 8b27b6d1-43bb-485f-9f74-cf1ebfdc554d
+		sourceLineageTag: IsCurrent
+		summarizeBy: none
+		sourceColumn: IsCurrent
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Full Name' =
+			
+			dimemployees[FirstName]&" "&dimemployees[LastName]
+		lineageTag: b49d8363-fddf-4161-ac26-b60993a1ba9d
+		summarizeBy: none
+		expressionContext: userContext
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dimemployees = entity
+		mode: directLake
+		source
+			entityName: dimemployees
+			schemaName: Semantic
+			expressionSource: 'DirectLake - Gold_Lakehouse'
+
+	changedProperty = Description
+

@@ -1,0 +1,99 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "f9dec6a564321d0d5d50",
+  "position": {
+    "x": 1117,
+    "y": 663,
+    "z": 7000,
+    "height": 417,
+    "width": 803,
+    "tabOrder": 7000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dimcustomers"
+                    }
+                  },
+                  "Property": "CustomerID"
+                }
+              },
+              "queryRef": "dimcustomers.CustomerID",
+              "nativeQueryRef": "CustomerID"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dimcustomers"
+                    }
+                  },
+                  "Property": "ContactName"
+                }
+              },
+              "queryRef": "dimcustomers.ContactName",
+              "nativeQueryRef": "Customer Name",
+              "displayName": "Customer Name"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dimcustomers"
+                    }
+                  },
+                  "Property": "Address"
+                }
+              },
+              "queryRef": "dimcustomers.Address",
+              "nativeQueryRef": "Address"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "factsales"
+                    }
+                  },
+                  "Property": "Total Ordered NetSales"
+                }
+              },
+              "queryRef": "factsales.Total Ordered NetSales",
+              "nativeQueryRef": "Value",
+              "displayName": "Value"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "factsales"
+                  }
+                },
+                "Property": "Total Ordered NetSales"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

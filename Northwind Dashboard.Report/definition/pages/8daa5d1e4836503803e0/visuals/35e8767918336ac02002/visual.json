@@ -1,0 +1,237 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "35e8767918336ac02002",
+  "position": {
+    "x": 289.53570566776909,
+    "y": 272.093795687783,
+    "z": 7000,
+    "height": 416.86164852166752,
+    "width": 1630.8185831286994,
+    "tabOrder": 7000
+  },
+  "visual": {
+    "visualType": "BoxandWhiskerByMAQ1823AD39DT234AB532063E128AX",
+    "query": {
+      "queryState": {
+        "measure": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "factsales"
+                    }
+                  },
+                  "Property": "Total Ordered NetSales"
+                }
+              },
+              "queryRef": "factsales.Total Ordered NetSales",
+              "nativeQueryRef": "Sales Value",
+              "displayName": "Sales Value"
+            }
+          ]
+        },
+        "category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dimdate"
+                    }
+                  },
+                  "Property": "Date"
+                }
+              },
+              "queryRef": "dimdate.Date",
+              "nativeQueryRef": "Date"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "flip": [
+        {
+          "properties": {
+            "orient": {
+              "expr": {
+                "Literal": {
+                  "Value": "'horizontal'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "meanConfig": [
+        {
+          "properties": {
+            "meanColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#00EEF2'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "boxOptions": [
+        {
+          "properties": {
+            "whiskerType": {
+              "expr": {
+                "Literal": {
+                  "Value": "'= 1.5 IQR'"
+                }
+              }
+            },
+            "boxUpperColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#F20089'"
+                    }
+                  }
+                }
+              }
+            },
+            "boxLowerColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#2D00F7'"
+                    }
+                  }
+                }
+              }
+            },
+            "whiskerColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "boxWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Large'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "RangeSelector": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "dotsColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#B100E8'"
+                    }
+                  }
+                }
+              }
+            },
+            "borderColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#fff1f2'"
+                    }
+                  }
+                }
+              }
+            },
+            "hoverColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#F31717'"
+                    }
+                  }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "7D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "xAxis": [
+        {
+          "properties": {
+            "start": {
+              "expr": {
+                "Literal": {
+                  "Value": "-2000D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Sales Outliers'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTitle": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

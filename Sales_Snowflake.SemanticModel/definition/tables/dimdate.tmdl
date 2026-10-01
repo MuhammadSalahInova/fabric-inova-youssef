@@ -1,0 +1,74 @@
+/// data for all days
+table dimdate
+	lineageTag: 3f03a973-6c67-4c18-8bdd-c9558c04b084
+	sourceLineageTag: [Semantic].[dimdate]
+
+	column Date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 3bf8ee9e-e565-4e75-b1fb-9ba750cd2fae
+		sourceLineageTag: Date
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateSK
+		dataType: int64
+		formatString: 0
+		lineageTag: 4310c652-95f8-4bc8-b997-2006b7cdd438
+		sourceLineageTag: DateSK
+		summarizeBy: none
+		sourceColumn: DateSK
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 0b29e2dd-c139-4cf5-a69b-d1d9cafd9ea9
+		sourceLineageTag: Year
+		summarizeBy: none
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter
+		dataType: int64
+		formatString: 0
+		lineageTag: 96f5db5a-30fd-48e0-bd29-85c08140b99b
+		sourceLineageTag: Quarter
+		summarizeBy: none
+		sourceColumn: Quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		dataType: int64
+		formatString: 0
+		lineageTag: 238ea457-cd73-4a24-b934-2ac29aa0dbf8
+		sourceLineageTag: Month
+		summarizeBy: none
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column Day
+		dataType: int64
+		formatString: 0
+		lineageTag: 6df18a5d-8be9-4a19-84c3-1b533aceeb30
+		sourceLineageTag: Day
+		summarizeBy: none
+		sourceColumn: Day
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dimdate = entity
+		mode: directLake
+		source
+			entityName: dimdate
+			schemaName: Semantic
+			expressionSource: 'DirectLake - Gold_Lakehouse'
+
+	changedProperty = Description
+

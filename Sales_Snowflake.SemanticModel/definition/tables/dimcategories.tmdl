@@ -1,0 +1,42 @@
+/// Product category data
+table dimcategories
+	lineageTag: 9e539b1e-7f42-41bf-9702-dc129b4e16fd
+	sourceLineageTag: [Semantic].[dimcategories]
+
+	column CategoryID
+		dataType: int64
+		formatString: 0
+		lineageTag: 46ce691a-48bb-49d8-bd9f-99357babe281
+		sourceLineageTag: CategoryID
+		summarizeBy: none
+		sourceColumn: CategoryID
+
+		annotation SummarizationSetBy = Automatic
+
+	column CategoryName
+		dataType: string
+		lineageTag: 9f4795dd-4ad1-46e8-8cd6-71df84fcda02
+		sourceLineageTag: CategoryName
+		summarizeBy: none
+		sourceColumn: CategoryName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Description
+		dataType: string
+		lineageTag: 454e6bd2-92cd-4ea1-9b49-35cbdcdb107e
+		sourceLineageTag: Description
+		summarizeBy: none
+		sourceColumn: Description
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dimcategories = entity
+		mode: directLake
+		source
+			entityName: dimcategories
+			schemaName: Semantic
+			expressionSource: 'DirectLake - Gold_Lakehouse'
+
+	changedProperty = Description
+

@@ -1,0 +1,214 @@
+/// Data describing each sold order data including the order details
+table factsales
+	lineageTag: 969bab32-125a-4907-abc2-69da8199f954
+	sourceLineageTag: [Semantic].[factsales]
+
+	/// Sum of ordered products sales value
+	measure 'Total Ordered NetSales' =
+			
+			SUM(factsales[NetSales])
+		lineageTag: 7c25c9c0-ffd5-47a4-b28d-4c3aeef4e4bc
+
+		changedProperty = Name
+
+		changedProperty = Description
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Sum of shipped products sales value
+	measure 'Total Shipped NetSales' =
+			
+			CALCULATE(
+			    [Total Ordered NetSales],
+			    USERELATIONSHIP(
+			        DimDate[DateSK],
+			        FactSales[ShippedDateSK]
+			    )
+			)
+		lineageTag: 2af7f2b8-5a85-4b6f-bc3d-4f0ecdd9fb64
+
+		changedProperty = Name
+
+		changedProperty = Description
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column OrderID
+		dataType: int64
+		formatString: 0
+		lineageTag: a1c058d3-8ee6-418c-b5af-91eb6a31d4ba
+		sourceLineageTag: OrderID
+		summarizeBy: count
+		sourceColumn: OrderID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShipAddress
+		dataType: string
+		lineageTag: 45a939df-0419-410f-9c3d-cc3d275df7cc
+		sourceLineageTag: ShipAddress
+		summarizeBy: none
+		sourceColumn: ShipAddress
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShipCountry
+		dataType: string
+		lineageTag: e2dc55e8-8ef6-4ae6-9690-cc9f84404aa1
+		sourceLineageTag: ShipCountry
+		summarizeBy: none
+		sourceColumn: ShipCountry
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShipCity
+		dataType: string
+		lineageTag: b5993116-de37-4935-a58a-0df9747626d4
+		sourceLineageTag: ShipCity
+		summarizeBy: none
+		sourceColumn: ShipCity
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShipName
+		dataType: string
+		lineageTag: fd45f099-a0fb-41cb-97af-4ee9d6d41f71
+		sourceLineageTag: ShipName
+		summarizeBy: none
+		sourceColumn: ShipName
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShipperID
+		dataType: int64
+		formatString: 0
+		lineageTag: a35bbcb6-773a-4a30-8d11-f69bfb54a125
+		sourceLineageTag: ShipperID
+		summarizeBy: none
+		sourceColumn: ShipperID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductSK
+		dataType: int64
+		formatString: 0
+		lineageTag: 7180c140-461c-4760-9602-93b6bfc7a330
+		sourceLineageTag: ProductSK
+		summarizeBy: none
+		sourceColumn: ProductSK
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerSK
+		dataType: int64
+		formatString: 0
+		lineageTag: 4f51f88f-d711-4dee-a4d6-089d076c9139
+		sourceLineageTag: CustomerSK
+		summarizeBy: none
+		sourceColumn: CustomerSK
+
+		annotation SummarizationSetBy = Automatic
+
+	column EmployeesSK
+		dataType: int64
+		formatString: 0
+		lineageTag: 2e548254-f536-4495-99ff-1ffad8605c63
+		sourceLineageTag: EmployeesSK
+		summarizeBy: none
+		sourceColumn: EmployeesSK
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderDateSK
+		dataType: int64
+		formatString: 0
+		lineageTag: 5eda30b2-8b8b-454a-a42f-000f7ce97ddb
+		sourceLineageTag: OrderDateSK
+		summarizeBy: none
+		sourceColumn: OrderDateSK
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShippedDateSK
+		dataType: int64
+		formatString: 0
+		lineageTag: 496a891e-495b-403b-9ca9-803f3cc73fe8
+		sourceLineageTag: ShippedDateSK
+		summarizeBy: sum
+		sourceColumn: ShippedDateSK
+
+		annotation SummarizationSetBy = Automatic
+
+	column RequiredDateSK
+		dataType: int64
+		formatString: 0
+		lineageTag: 4a6c4935-d160-4560-a817-200d0fb7e7b2
+		sourceLineageTag: RequiredDateSK
+		summarizeBy: sum
+		sourceColumn: RequiredDateSK
+
+		annotation SummarizationSetBy = Automatic
+
+	column UnitPrice
+		dataType: double
+		lineageTag: d72c33b7-dcbc-41f2-bd00-78fa67979ada
+		sourceLineageTag: UnitPrice
+		summarizeBy: sum
+		sourceColumn: UnitPrice
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Quantity
+		dataType: int64
+		formatString: 0
+		lineageTag: 6d109f25-5279-40b2-97b5-e9b96b338ce2
+		sourceLineageTag: Quantity
+		summarizeBy: sum
+		sourceColumn: Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column Discount
+		dataType: double
+		lineageTag: bc8ce81a-e016-4c74-a2db-45e7bb27df3d
+		sourceLineageTag: Discount
+		summarizeBy: sum
+		sourceColumn: Discount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Freight
+		dataType: double
+		lineageTag: 21bae360-93e2-4867-bc5a-85d79b2c7a18
+		sourceLineageTag: Freight
+		summarizeBy: sum
+		sourceColumn: Freight
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column NetSales
+		dataType: double
+		lineageTag: c4aefad5-e036-43b7-aaf3-4ff1f6d12039
+		sourceLineageTag: NetSales
+		summarizeBy: sum
+		sourceColumn: NetSales
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition factsales = entity
+		mode: directLake
+		source
+			entityName: factsales
+			schemaName: Semantic
+			expressionSource: 'DirectLake - Gold_Lakehouse'
+
+	changedProperty = Description
+

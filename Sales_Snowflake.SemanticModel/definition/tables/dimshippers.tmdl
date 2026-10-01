@@ -1,0 +1,39 @@
+table dimshippers
+	lineageTag: 18d59f50-3608-4f22-ba96-27056680fdc5
+	sourceLineageTag: [Semantic].[dimshippers]
+
+	column CompanyName
+		dataType: string
+		lineageTag: e11af863-bea4-4c8e-bf6f-0e615bb35ef1
+		sourceLineageTag: CompanyName
+		summarizeBy: none
+		sourceColumn: CompanyName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Phone
+		dataType: string
+		lineageTag: 32fd32fc-b039-4ca9-a373-579ecfd68ce0
+		sourceLineageTag: Phone
+		summarizeBy: none
+		sourceColumn: Phone
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShipperID
+		dataType: int64
+		formatString: 0
+		lineageTag: 4b1e33a3-3147-4698-b751-c668a6a527f8
+		sourceLineageTag: ShipperID
+		summarizeBy: none
+		sourceColumn: ShipperID
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dimshippers = entity
+		mode: directLake
+		source
+			entityName: dimshippers
+			schemaName: Semantic
+			expressionSource: 'DirectLake - Gold_Lakehouse'
+

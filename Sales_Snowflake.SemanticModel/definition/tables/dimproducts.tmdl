@@ -1,0 +1,153 @@
+/// Sellable products data
+table dimproducts
+	lineageTag: fad3e048-7c8e-43c0-8f03-984fc00664c1
+	sourceLineageTag: [Semantic].[dimproducts]
+
+	column CategoryID
+		dataType: int64
+		formatString: 0
+		lineageTag: 7264486f-beec-4973-a67a-507b909e409e
+		sourceLineageTag: CategoryID
+		summarizeBy: none
+		sourceColumn: CategoryID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Discontinued
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 8655fea7-ccf9-4ddd-92aa-2aabab7a48cb
+		sourceLineageTag: Discontinued
+		summarizeBy: none
+		sourceColumn: Discontinued
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductID
+		dataType: int64
+		formatString: 0
+		lineageTag: 7b7fbd57-6112-46cb-ac88-60cc47d4f856
+		sourceLineageTag: ProductID
+		summarizeBy: count
+		sourceColumn: ProductID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductName
+		dataType: string
+		lineageTag: 33cf17b2-3c0b-48a5-a7ec-089f6e05b624
+		sourceLineageTag: ProductName
+		summarizeBy: none
+		sourceColumn: ProductName
+
+		annotation SummarizationSetBy = Automatic
+
+	column QuantityPerUnit
+		dataType: string
+		lineageTag: 6179babb-c8ea-4254-a838-61688db0bfbf
+		sourceLineageTag: QuantityPerUnit
+		summarizeBy: none
+		sourceColumn: QuantityPerUnit
+
+		annotation SummarizationSetBy = Automatic
+
+	column ReorderLevel
+		dataType: int64
+		formatString: 0
+		lineageTag: ecb9d9b4-b701-4458-863d-49a894e3af14
+		sourceLineageTag: ReorderLevel
+		summarizeBy: sum
+		sourceColumn: ReorderLevel
+
+		annotation SummarizationSetBy = Automatic
+
+	column SupplierID
+		dataType: int64
+		formatString: 0
+		lineageTag: 81cefdf3-afc1-4a98-ab09-299c082fc0ad
+		sourceLineageTag: SupplierID
+		summarizeBy: none
+		sourceColumn: SupplierID
+
+		annotation SummarizationSetBy = Automatic
+
+	column UnitPrice
+		dataType: double
+		lineageTag: e9d6389f-a8b6-4b25-9a24-676858c938b8
+		sourceLineageTag: UnitPrice
+		summarizeBy: sum
+		sourceColumn: UnitPrice
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column UnitsInStock
+		dataType: int64
+		formatString: 0
+		lineageTag: 213c4dd6-3958-477e-a553-41504dea3574
+		sourceLineageTag: UnitsInStock
+		summarizeBy: sum
+		sourceColumn: UnitsInStock
+
+		annotation SummarizationSetBy = Automatic
+
+	column UnitsOnOrder
+		dataType: int64
+		formatString: 0
+		lineageTag: 95b04451-f9d1-42f5-ae4a-f1ad40d53164
+		sourceLineageTag: UnitsOnOrder
+		summarizeBy: sum
+		sourceColumn: UnitsOnOrder
+
+		annotation SummarizationSetBy = Automatic
+
+	column IngestedAt
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 5fe3d07b-ec66-4801-a849-de940857fbad
+		sourceLineageTag: IngestedAt
+		summarizeBy: none
+		sourceColumn: IngestedAt
+
+		annotation SummarizationSetBy = Automatic
+
+	column EndedAt
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: f7d53f4e-6654-4362-a452-3fae184433e8
+		sourceLineageTag: EndedAt
+		summarizeBy: none
+		sourceColumn: EndedAt
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductSK
+		dataType: int64
+		formatString: 0
+		lineageTag: b49c8d31-1ca7-4e1c-9ff2-28cae2a1fb48
+		sourceLineageTag: ProductSK
+		summarizeBy: none
+		sourceColumn: ProductSK
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsCurrent
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: c082176e-cb5c-4616-a880-f143a88fc0e0
+		sourceLineageTag: IsCurrent
+		summarizeBy: none
+		sourceColumn: IsCurrent
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dimproducts = entity
+		mode: directLake
+		source
+			entityName: dimproducts
+			schemaName: Semantic
+			expressionSource: 'DirectLake - Gold_Lakehouse'
+
+	changedProperty = Description
+

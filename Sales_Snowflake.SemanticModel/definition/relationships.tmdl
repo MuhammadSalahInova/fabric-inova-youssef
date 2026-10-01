@@ -1,0 +1,38 @@
+relationship f20f7f90-c7fa-f825-50b5-709b2b88c026
+	fromColumn: factsales.EmployeesSK
+	toColumn: dimemployees.EmployeesSK
+
+relationship cc0a0eaf-1bc9-dff0-14f6-46ef6f94896e
+	fromColumn: factsales.ProductSK
+	toColumn: dimproducts.ProductSK
+
+relationship a1dc49cf-8ee8-ce68-916b-4f99fef336b0
+	fromColumn: factsales.CustomerSK
+	toColumn: dimcustomers.CustomerSK
+
+relationship a747b3c3-b0cd-64da-1c9d-573922716cf6
+	fromColumn: factsales.ShipperID
+	toColumn: dimshippers.ShipperID
+
+relationship e2f712a9-ec8f-d4f1-df50-33477d524079
+	fromColumn: dimproducts.SupplierID
+	toColumn: dimsuppliers.SupplierID
+
+relationship 22e0078a-5d5e-3d6b-c142-762458f6450b
+	fromColumn: dimproducts.CategoryID
+	toColumn: dimcategories.CategoryID
+
+relationship e8c71cb1-f07e-7bf3-e13c-17e292ef7bb2
+	fromColumn: factsales.OrderDateSK
+	toColumn: dimdate.DateSK
+
+relationship c85a6dd4-6ca4-f9f6-44c3-8a874a25609e
+	isActive: false
+	fromColumn: factsales.RequiredDateSK
+	toColumn: dimdate.DateSK
+
+relationship 340bdfe2-616c-422a-6d1c-8a285f6da72b
+	isActive: false
+	fromColumn: factsales.ShippedDateSK
+	toColumn: dimdate.DateSK
+

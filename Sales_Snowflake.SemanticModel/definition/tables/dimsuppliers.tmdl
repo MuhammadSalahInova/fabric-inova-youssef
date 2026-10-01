@@ -1,0 +1,123 @@
+/// Product suppliers data
+table dimsuppliers
+	lineageTag: 977dd3e1-4d6b-4e66-8cec-e405bc3cc1a1
+	sourceLineageTag: [Semantic].[dimsuppliers]
+
+	column Address
+		dataType: string
+		lineageTag: 19303271-35b6-4aba-9012-f2dc7914794f
+		sourceLineageTag: Address
+		summarizeBy: none
+		sourceColumn: Address
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		lineageTag: dbc0d703-0f28-4f44-867f-0300175f21bb
+		sourceLineageTag: City
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column CompanyName
+		dataType: string
+		lineageTag: fdb46415-e884-4958-af6b-f1a4b9b65ab2
+		sourceLineageTag: CompanyName
+		summarizeBy: none
+		sourceColumn: CompanyName
+
+		annotation SummarizationSetBy = Automatic
+
+	column ContactName
+		dataType: string
+		lineageTag: 7152188a-5f9d-4c3e-ad66-aa9d7852e244
+		sourceLineageTag: ContactName
+		summarizeBy: none
+		sourceColumn: ContactName
+
+		annotation SummarizationSetBy = Automatic
+
+	column ContactTitle
+		dataType: string
+		lineageTag: e8d71e92-4b59-4337-a98f-9b18cc86d9c8
+		sourceLineageTag: ContactTitle
+		summarizeBy: none
+		sourceColumn: ContactTitle
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: 6d98afad-e4b1-404e-aa37-c77a6d470c06
+		sourceLineageTag: Country
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column Fax
+		dataType: string
+		lineageTag: b071ad39-36f4-4a72-9461-25235b7db2e6
+		sourceLineageTag: Fax
+		summarizeBy: none
+		sourceColumn: Fax
+
+		annotation SummarizationSetBy = Automatic
+
+	column HomePage
+		dataType: string
+		lineageTag: 64ed6f50-e50a-4b0d-abc1-abdf0bae787f
+		sourceLineageTag: HomePage
+		summarizeBy: none
+		sourceColumn: HomePage
+
+		annotation SummarizationSetBy = Automatic
+
+	column Phone
+		dataType: string
+		lineageTag: b051c045-7890-428f-a06e-c66318ebe83f
+		sourceLineageTag: Phone
+		summarizeBy: none
+		sourceColumn: Phone
+
+		annotation SummarizationSetBy = Automatic
+
+	column PostalCode
+		dataType: string
+		lineageTag: 6a630010-883a-41c4-bf37-e73b5d32ca88
+		sourceLineageTag: PostalCode
+		summarizeBy: none
+		sourceColumn: PostalCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column Region
+		dataType: string
+		lineageTag: 0e9b2f4a-dba4-4dfd-928b-22f8be60278a
+		sourceLineageTag: Region
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column SupplierID
+		dataType: int64
+		formatString: 0
+		lineageTag: a521c781-5046-445b-99bc-cf7ead8ec929
+		sourceLineageTag: SupplierID
+		summarizeBy: none
+		sourceColumn: SupplierID
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dimsuppliers = entity
+		mode: directLake
+		source
+			entityName: dimsuppliers
+			schemaName: Semantic
+			expressionSource: 'DirectLake - Gold_Lakehouse'
+
+	changedProperty = Description
+

@@ -1,0 +1,94 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "0eb1bdd2da2771cc1406",
+  "position": {
+    "x": 1115.6126568284226,
+    "y": 677.18923265046317,
+    "z": 7000,
+    "height": 403.431883281127,
+    "width": 804.80544062714614,
+    "tabOrder": 7000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dimemployees"
+                    }
+                  },
+                  "Property": "EmployeeID"
+                }
+              },
+              "queryRef": "dimemployees.EmployeeID",
+              "nativeQueryRef": "EmployeeID"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dimemployees"
+                    }
+                  },
+                  "Property": "Full Name"
+                }
+              },
+              "queryRef": "dimemployees.Full Name",
+              "nativeQueryRef": "Full Name"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dimemployees"
+                    }
+                  },
+                  "Property": "Title"
+                }
+              },
+              "queryRef": "dimemployees.Title",
+              "nativeQueryRef": "Title"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dimemployees"
+                    }
+                  },
+                  "Property": "Address"
+                }
+              },
+              "queryRef": "dimemployees.Address",
+              "nativeQueryRef": "Address"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dimemployees"
+                    }
+                  },
+                  "Property": "Notes"
+                }
+              },
+              "queryRef": "dimemployees.Notes",
+              "nativeQueryRef": "Notes"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}
