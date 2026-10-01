@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Notebook",
+    "displayName": "ToGold"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "4a86033d-43fa-9708-4577-87008c46cfe5"
+  }
+}

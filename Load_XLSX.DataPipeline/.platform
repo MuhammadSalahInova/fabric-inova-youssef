@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "DataPipeline",
+    "displayName": "Load_XLSX"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "734438ca-8f91-9ee9-4e42-48f1203d302e"
+  }
+}

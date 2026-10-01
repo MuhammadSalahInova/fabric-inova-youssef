@@ -1,0 +1,175 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "945caad2-d522-b0c0-42ca-2cc0e9b7d061",
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "parameters": {
+            "SrcTable": {
+              "value": {
+                "value": "@pipeline().parameters.SrcTable",
+                "type": "Expression"
+              },
+              "type": "string"
+            },
+            "Base_URL": {
+              "value": {
+                "value": "@pipeline().parameters.Base_URL",
+                "type": "Expression"
+              },
+              "type": "string"
+            },
+            "Time": {
+              "value": {
+                "value": "@pipeline().parameters.Time",
+                "type": "Expression"
+              },
+              "type": "string"
+            },
+            "TrgtTable": {
+              "value": {
+                "value": "@pipeline().parameters.TrgtTable",
+                "type": "Expression"
+              },
+              "type": "string"
+            }
+          }
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "ToBronze",
+        "dependsOn": []
+      },
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "18d004fc-ac07-8577-4cef-7529912dd8ed",
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "parameters": {
+            "SrcTable": {
+              "value": {
+                "value": "@pipeline().parameters.SrcTable",
+                "type": "Expression"
+              },
+              "type": "string"
+            },
+            "Base_URL": {
+              "value": {
+                "value": "@pipeline().parameters.Base_URL",
+                "type": "Expression"
+              },
+              "type": "string"
+            },
+            "TrgtTable": {
+              "value": {
+                "value": "@pipeline().parameters.TrgtTable",
+                "type": "Expression"
+              },
+              "type": "string"
+            }
+          }
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Validate",
+        "dependsOn": [
+          {
+            "activity": "ToBronze",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "MicrosoftTeams",
+        "typeProperties": {
+          "content": "<p>Your Pipeline ran into a problem while loading to bronze from API.</p>\n<p><br></p>\n<p>Details :-</p>\n<p>Pipeline Name: @{pipeline().PipelineName}</p>\n<p>Table Name: @{pipeline().parameters.SrcTable}</p>\n<p>Time: @{pipeline().parameters.Time}</p>\n<p>Error Message:-</p>\n<p>@{activity('ToBronze').error.message}</p>\n<p></p>\n<p><br>\n</p>",
+          "teamId": "43f164df-f56d-409d-9cbe-25edbfb9209c",
+          "channelId": "19:adcadb65a29f4106b8b5983b4e660f10@thread.tacv2",
+          "operationType": "SendMessageInChannel",
+          "subject": "HEEY YOUSSEF"
+        },
+        "externalReferences": {
+          "connection": "5983ab3a-c4b7-4ae8-8634-0638d7b900a7"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Bronze API Load",
+        "dependsOn": [
+          {
+            "activity": "ToBronze",
+            "dependencyConditions": [
+              "Failed"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "MicrosoftTeams",
+        "typeProperties": {
+          "content": "<p>Your Pipeline ran into a problem while validating API data.</p>\n<p><br></p>\n<p>Details :-</p>\n<p>Pipeline Name: @{pipeline().PipelineName}</p>\n<p>Table Name: @{pipeline().parameters.SrcTable}</p>\n<p>Time: @{pipeline().parameters.Time}</p>\n<p>Error Message:-</p>\n<p>@{activity('Validate').error.message}</p>\n<p><br></p>",
+          "teamId": "43f164df-f56d-409d-9cbe-25edbfb9209c",
+          "channelId": "19:adcadb65a29f4106b8b5983b4e660f10@thread.tacv2",
+          "operationType": "SendMessageInChannel",
+          "subject": "HEEY YOUSSEF"
+        },
+        "externalReferences": {
+          "connection": "5983ab3a-c4b7-4ae8-8634-0638d7b900a7"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Bronze API Valid",
+        "dependsOn": [
+          {
+            "activity": "Validate",
+            "dependencyConditions": [
+              "Failed"
+            ]
+          }
+        ]
+      }
+    ],
+    "parameters": {
+      "SrcTable": {
+        "type": "string"
+      },
+      "Base_URL": {
+        "type": "string"
+      },
+      "Time": {
+        "type": "string"
+      },
+      "TrgtTable": {
+        "type": "string"
+      }
+    },
+    "variables": {
+      "Base_URL": {
+        "type": "String"
+      }
+    }
+  }
+}

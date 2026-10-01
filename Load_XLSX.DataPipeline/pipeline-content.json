@@ -1,0 +1,237 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "Lookup",
+        "typeProperties": {
+          "source": {
+            "type": "SqlServerSource",
+            "sqlReaderQuery": {
+              "value": "select *\nfrom Configuration.fileconfig\nwhere FileStatus = 'New'",
+              "type": "Expression"
+            },
+            "partitionOption": "None",
+            "queryTimeout": "02:00:00"
+          },
+          "datasetSettings": {
+            "type": "SqlServerTable",
+            "typeProperties": {
+              "database": "Bronze_Lakehouse"
+            },
+            "schema": [],
+            "externalReferences": {
+              "connection": "572df3fc-6107-4b17-8e89-97348d52b3df"
+            },
+            "annotations": []
+          },
+          "firstRowOnly": false
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Get new files",
+        "description": "Gets the object storage file details from the fileconfig where their status isnt archived",
+        "dependsOn": []
+      },
+      {
+        "type": "ForEach",
+        "typeProperties": {
+          "isSequential": true,
+          "items": {
+            "value": "@activity('Get new files').output.value",
+            "type": "Expression"
+          },
+          "activities": [
+            {
+              "type": "TridentNotebook",
+              "typeProperties": {
+                "notebookId": "eb6493a6-16f2-9434-401e-0772dd76c756",
+                "workspaceId": "00000000-0000-0000-0000-000000000000",
+                "parameters": {
+                  "SrcTable": {
+                    "value": {
+                      "value": "@pipeline().parameters.SrcTable",
+                      "type": "Expression"
+                    },
+                    "type": "string"
+                  },
+                  "TrgtTable": {
+                    "value": {
+                      "value": "@pipeline().parameters.TrgtTable",
+                      "type": "Expression"
+                    },
+                    "type": "string"
+                  },
+                  "FilePath": {
+                    "value": {
+                      "value": "@item().FilePath",
+                      "type": "Expression"
+                    },
+                    "type": "string"
+                  },
+                  "Time": {
+                    "value": {
+                      "value": "@pipeline().parameters.Time",
+                      "type": "Expression"
+                    },
+                    "type": "string"
+                  }
+                }
+              },
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "ToBronze",
+              "dependsOn": []
+            },
+            {
+              "type": "TridentNotebook",
+              "typeProperties": {
+                "notebookId": "eb72d907-6164-861d-48ab-05979061f33b",
+                "workspaceId": "00000000-0000-0000-0000-000000000000",
+                "parameters": {
+                  "SrcTable": {
+                    "value": {
+                      "value": "@pipeline().parameters.SrcTable",
+                      "type": "Expression"
+                    },
+                    "type": "string"
+                  },
+                  "TrgtTable": {
+                    "value": {
+                      "value": "@pipeline().parameters.TrgtTable",
+                      "type": "Expression"
+                    },
+                    "type": "string"
+                  },
+                  "FilePath": {
+                    "value": {
+                      "value": "@item().FilePath",
+                      "type": "Expression"
+                    },
+                    "type": "string"
+                  },
+                  "FileName": {
+                    "value": {
+                      "value": "@item().FileName",
+                      "type": "Expression"
+                    },
+                    "type": "string"
+                  }
+                }
+              },
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "Validate",
+              "dependsOn": [
+                {
+                  "activity": "ToBronze",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "MicrosoftTeams",
+              "typeProperties": {
+                "content": "<p>Your Pipeline ran into a problem while loading to bronze from XLSX.</p>\n<p><br></p>\n<p>Details :-</p>\n<p>Pipeline Name: @{pipeline().PipelineName}</p>\n<p>Table Name: @{pipeline().parameters.SrcTable}</p>\n<p>Time: @{pipeline().parameters.Time}</p>\n<p>Error Message:-</p>\n<p>@{activity('ToBronze').error.message}</p>\n<p><br></p>",
+                "teamId": "43f164df-f56d-409d-9cbe-25edbfb9209c",
+                "channelId": "19:adcadb65a29f4106b8b5983b4e660f10@thread.tacv2",
+                "operationType": "SendMessageInChannel",
+                "subject": "HEEY YOUSSEF"
+              },
+              "externalReferences": {
+                "connection": "5983ab3a-c4b7-4ae8-8634-0638d7b900a7"
+              },
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "Bronze XLSX Load",
+              "dependsOn": [
+                {
+                  "activity": "ToBronze",
+                  "dependencyConditions": [
+                    "Failed"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "MicrosoftTeams",
+              "typeProperties": {
+                "content": "<p>Your Pipeline ran into a problem while validating XLSX data.</p>\n<p><br></p>\n<p>Details :-</p>\n<p>Pipeline Name: @{pipeline().PipelineName}</p>\n<p>Table Name: @{pipeline().parameters.SrcTable}</p>\n<p>Time: @{pipeline().parameters.Time}</p>\n<p>Error Message:-</p>\n<p>@{activity('Validate').error.message}</p>\n<p><br></p>",
+                "teamId": "43f164df-f56d-409d-9cbe-25edbfb9209c",
+                "channelId": "19:adcadb65a29f4106b8b5983b4e660f10@thread.tacv2",
+                "operationType": "SendMessageInChannel",
+                "subject": "HEEY YOUSSEF"
+              },
+              "externalReferences": {
+                "connection": "5983ab3a-c4b7-4ae8-8634-0638d7b900a7"
+              },
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "Bronze XLSX Valid",
+              "dependsOn": [
+                {
+                  "activity": "Validate",
+                  "dependencyConditions": [
+                    "Failed"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "name": "ForEach File",
+        "description": "Loops on each new file",
+        "dependsOn": [
+          {
+            "activity": "Get new files",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      }
+    ],
+    "parameters": {
+      "SrcTable": {
+        "type": "string"
+      },
+      "TrgtTable": {
+        "type": "string"
+      },
+      "Time": {
+        "type": "string"
+      }
+    },
+    "variables": {
+      "Base_URL": {
+        "type": "String"
+      }
+    }
+  }
+}
